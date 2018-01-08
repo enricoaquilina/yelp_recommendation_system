@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<title>Recommendation System</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+<style>
+    html,
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Roboto", sans-serif
+    }
+
+    .btn_recommend {
+    color: #ffffff;
+    font-size: 20px;
+    background: #009687;
+    padding: 10px 20px 10px 20px;
+    border: solid #009788 2px;
+    text-decoration: none;
+     float: right;
+     margin-top:  25px;
+
+    }
+
+    .btn_recommend:hover {
+    background: #06b3a2;
+    text-decoration: none;
+    }
+</style>
+
+<script>
+    var timeoutHandle;
+    $(document).ready(function () 
+    {
+        $("#search").keyup(function () 
+        {
+            clearTimeout(timeoutHandle);
+            timeoutHandle = setTimeout(
+            function() 
+            {
+                searchTerm = $("#search").val();
+                jQuery('#Users').empty();
+
+                if (searchTerm == "")
+                    return;
+
+                var xmlhttp;
+                if (window.XMLHttpRequest) 
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else 
+                {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                xmlhttp.open("POST", "http://localhost:5000/users/" + searchTerm, true);
+
+                xmlhttp.onreadystatechange = function () {//Call a function when the state changes.
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+                    {
+                        var obj = JSON.parse(xmlhttp.responseText);
+
+                        for (var i = 0; i < obj.users.length; i++) 
+                        {
+                            jQuery('#Users').append("<p><a href=\"#\" onclick=\"LoadMovies('"+ obj.users[i].id +"','" + obj.users[i].type +"','" + obj.users[i].name +"')\">" + obj.users[i].name + "</a></p>")
+                        }
+                    }
+                }
+                xmlhttp.send();
+            }, 500);
+
+        });
+    });
+
+    function LoadMovies(id, type, name)
+    {
+        // Clear the div
+        jQuery('#MovieSection').empty();
+
+         // Add the header 
+        jQuery('#MovieSection').append(`
+                <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                    <h2 class="w3-text-grey w3-padding-16" style="float: left"><i class="fa fa-user fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>
+                        ` + name + ` 
+                    </h2>
+
+                    <button class="btn_recommend" type="button" onclick="ReccomendMovies('`+ id +`','`+ type +`'); return false;">Recommend Movies</button>
+                </div>`);
+
+        var xmlhttp;
+        if (window.XMLHttpRequest) 
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else 
+        {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        var params = "{\"type\":\""+type+"\"}"
+        xmlhttp.open("POST", "http://localhost:5000/user_movies/"+id, true);
+
+        xmlhttp.onreadystatechange = function () {//Call a function when the state changes.
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+            {
+                var obj = JSON.parse(xmlhttp.responseText);
+                jQuery('#UserMovies').empty();
+
+                for (var i = 0; i < obj.users[0].comments.length; i++) 
+                {
+                    var comments =  obj.users[0].comments[i];
+                    var movietitle = comments.movie_title == "" ? comments.trailer_name : comments.movie_title
+                    // Add the Movies
+                    jQuery('#UserMovies').append(`<div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-file-movie-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>`+ movietitle +`</h2>
+                                <div class="w3-container">
+
+                                    <iframe style="display:block; margin: 0 auto;" width="70%" height="400px" src="https://www.youtube.com/embed/`+ comments.trailer_id +`"
+                                        frameborder="0" allowfullscreen>
+                                    </iframe>
+                                    <hr>
+                                    <h5 class="w3-opacity"><b>Synopsis</b></h5>
+                                    <p>`+ comments.movie_plot +`</p>
+                                    <hr>
+                                    <h5 class="w3-opacity"><b>Comments</b></h5>
+                                    <p>`+ comments.user_comment +`</p>
+                                    <hr>
+                                </div>
+                            </div>`);
+                }
+            }
+        }
+        xmlhttp.send(params);
+    }
+
+
+    function ReccomendMovies(id, type)
+    {
+        // Clear the div
+        jQuery('#UserMovies').empty();
+
+        var xmlhttp;
+        if (window.XMLHttpRequest) 
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else 
+        {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        var params = "{\"type\":\""+type+"\"}"
+        xmlhttp.open("POST", "http://localhost:5000/reccomend/"+id, true);
+
+        xmlhttp.onreadystatechange = function () 
+        {//Call a function when the state changes.
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+            {
+                var obj = JSON.parse(xmlhttp.responseText);
+
+                for (var i = 0; i < obj.movies.length; i++) 
+                {
+                    var movie =  obj.movies[i];
+                    
+                    // Add the Movies
+                    jQuery('#MovieSection').append(`<div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-file-movie-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>`+ movie.title +`</h2>
+                                <div class="w3-container">
+
+                                    <iframe style="display:block; margin: 0 auto;" width="70%" height="400px" src="https://www.youtube.com/embed/`+ movie.youtube_id +`"
+                                        frameborder="0" allowfullscreen>
+                                    </iframe>
+                                    <hr>
+                                    <h5 class="w3-opacity"><b>Synopsis</b></h5>
+                                    <p>`+ movie.plot +`</p>
+                                    <hr>
+                                    <h5 class="w3-opacity"><b>Rating</b></h5>
+                                    <p>`+ movie.predicted_rating +`</p>
+                                    <hr>
+                                </div>
+                            </div>`);
+                }
+            }
+        }
+        xmlhttp.send(params);
+    }
+
+    function StartTest()
+    {
+        jQuery('#MovieSection').empty();
+        jQuery('#UserMovies').empty();
+        jQuery('#MovieSection').append(`
+            <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                <h2 class="w3-text-grey w3-padding-16" style="float: left"><i class="fa fa-user fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>
+                    Input User: 
+                    <button type="text" class="btn_recommend" type="button"  style="float: right; height: 40px;margin-left: 15px; margin-top: -0px" onclick="SubmitTest();return false;">Submit Results</button>
+                    <input id="testName" type="text" class="form-control" placeholder="Name..." style="float: right;width:300px; height: 40px;margin-left: 15px; font-size: 25px;font-family: 'Roboto', sans-serif"></input>
+                </h2>             
+            </div>`);
+
+        var xmlhttp;
+        if (window.XMLHttpRequest) 
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else 
+        {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+    
+        xmlhttp.open("POST", "http://localhost:5000/randommovies/", true);
+
+        xmlhttp.onreadystatechange = function () 
+        {//Call a function when the state changes.
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+            {
+                var obj = JSON.parse(xmlhttp.responseText);
+
+                for (var i = 0; i < obj.movies.length; i++) 
+                {
+                    var movie =  obj.movies[i];
+
+                    // Add the Movies
+                    jQuery('#MovieSection').append(`<div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-file-movie-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>`+ movie.title +`</h2>
+                                <div class="w3-container">
+
+                                    <iframe style="display:block; margin: 0 auto;" width="70%" height="400px" src="https://www.youtube.com/embed/`+ movie.youtube_id +`"
+                                        frameborder="0" allowfullscreen>
+                                    </iframe>
+                                    <hr>
+                                    <h5 class="w3-opacity"><b>Rating</b></h5>
+                                    <textarea id="Comment`+ i +`" movieID="`+ movie.youtube_id +`" rows="4" cols="50" placeholder="Enter Comment..."></textarea>
+                                    <hr>
+                                </div>
+                            </div>`);
+                }
+            }
+        }
+        xmlhttp.send();
+    }
+
+    function SubmitTest()
+    {
+        var data = { 
+            Name: jQuery('#testName').val(),
+            Movies: [
+                { 
+                    ID: jQuery('#Comment0').attr("movieID"), 
+                    Comment: jQuery('#Comment0').val()
+                },
+                { 
+                    ID: jQuery('#Comment1').attr("movieID"), 
+                    Comment: jQuery('#Comment1').val()
+                },
+                { 
+                    ID: jQuery('#Comment2').attr("movieID"), 
+                    Comment: jQuery('#Comment2').val()
+                },
+                { 
+                    ID: jQuery('#Comment3').attr("movieID"), 
+                    Comment: jQuery('#Comment3').val()
+                },
+                { 
+                    ID: jQuery('#Comment4').attr("movieID"), 
+                    Comment: jQuery('#Comment4').val()
+                },
+               /* { 
+                    ID: jQuery('#Comment5').attr("movieID"), 
+                    Comment: jQuery('#Comment5').val()
+                },
+                { 
+                    ID: jQuery('#Comment6').attr("movieID"), 
+                    Comment: jQuery('#Comment6').val()
+                },
+                { 
+                    ID: jQuery('#Comment7').attr("movieID"), 
+                    Comment: jQuery('#Comment7').val()
+                },
+                { 
+                    ID: jQuery('#Comment8').attr("movieID"), 
+                    Comment: jQuery('#Comment8').val()
+                },
+                { 
+                    ID: jQuery('#Comment9').attr("movieID"), 
+                    Comment: jQuery('#Comment9').val()
+                },
+                { 
+                    ID: jQuery('#Comment10').attr("movieID"), 
+                    Comment: jQuery('#Comment10').val()
+                },
+                { 
+                    ID: jQuery('#Comment11').attr("movieID"), 
+                    Comment: jQuery('#Comment11').val()
+                },
+                { 
+                    ID: jQuery('#Comment12').attr("movieID"), 
+                    Comment: jQuery('#Comment12').val()
+                },
+                { 
+                    ID: jQuery('#Comment13').attr("movieID"), 
+                    Comment: jQuery('#Comment13').val()
+                },
+                { 
+                    ID: jQuery('#Comment14').attr("movieID"), 
+                    Comment: jQuery('#Comment14').val()
+                },*/
+            ] 
+        }
+
+
+        var xmlhttp;
+        if (window.XMLHttpRequest) 
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else 
+        {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.open("POST", "http://localhost:5000/addtestuser/", true);
+
+        xmlhttp.onreadystatechange = function () 
+        {//Call a function when the state changes.
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+            {
+                jQuery('#MovieSection').empty();
+                jQuery('#UserMovies').empty();
+
+                jQuery('#MovieSection').append(`
+                    <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                        <h2 class="w3-text-grey w3-padding-16" style="float: left"><i class="fa fa-user fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>
+                            Recommendations
+                            <button type="text" class="btn_recommend" type="button"  style="float: right; height: 40px;margin-left: 15px; margin-top: -0px" onclick="SubmitForResults();return false;">Submit Results</button>
+                        </h2>             
+                    </div>`);
+
+                var obj = JSON.parse(xmlhttp.responseText);
+
+                for (var i = 0; i < obj.movies.length; i++) 
+                {
+                    var movie =  obj.movies[i];
+                    
+                    // Add the Movies
+                    jQuery('#MovieSection').append(`<div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-file-movie-o fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>`+ movie.title +`</h2>
+                                <div class="w3-container">
+
+                                    <iframe style="display:block; margin: 0 auto;" width="70%" height="400px" src="https://www.youtube.com/embed/`+ movie.youtube_id +`"
+                                        frameborder="0" allowfullscreen>
+                                    </iframe>
+                                    <hr>
+                                    <h5 class="w3-opacity"><b>Rating</b></h5>
+                                    <select id="Comment`+ i +`" actualPredicted="`+ movie.predicted_rating +`">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <hr>
+                                </div>
+                            </div>`);
+                }
+            }
+        }
+        xmlhttp.send(JSON.stringify(data));
+    }
+    
+
+    function SubmitForResults()
+    {
+        var data = { 
+            Name: jQuery('#testName').val(),
+            Movies: [
+                { 
+                    ID: jQuery('#Comment0').attr("movieID"), 
+                    Rating: $( "#Comment0 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment0').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment1').attr("movieID"), 
+                    Rating: $( "#Comment1 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment1').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment2').attr("movieID"), 
+                    Rating: $( "#Comment2 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment2').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment3').attr("movieID"), 
+                    Rating: $( "#Comment3 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment3').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment4').attr("movieID"), 
+                    Rating: $( "#Comment4 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment4').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment5').attr("movieID"), 
+                    Rating: $( "#Comment5 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment5').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment6').attr("movieID"), 
+                    Rating: $( "#Comment6 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment6').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment7').attr("movieID"), 
+                    Rating: $( "#Comment7 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment7').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment8').attr("movieID"), 
+                    Rating: $( "#Comment8 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment8').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment9').attr("movieID"), 
+                    Rating: $( "#Comment9 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment9').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment10').attr("movieID"), 
+                    Rating: $( "#Comment10 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment10').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment11').attr("movieID"), 
+                    Rating: $( "#Comment11 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment11').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment12').attr("movieID"), 
+                    Rating: $( "#Comment12 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment12').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment13').attr("movieID"), 
+                    Rating: $( "#Comment13 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment13').attr("actualPredicted"),
+                },
+                { 
+                    ID: jQuery('#Comment14').attr("movieID"), 
+                    Rating: $( "#Comment14 option:selected" ).text(),
+                    PredictedRating: jQuery('#Comment14').attr("actualPredicted"),
+                },
+                
+            ] 
+        }
+
+
+        var xmlhttp;
+        if (window.XMLHttpRequest) 
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else 
+        {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.open("POST", "http://localhost:5000/getmae/", true);
+
+        xmlhttp.onreadystatechange = function () 
+        {//Call a function when the state changes.
+             var obj = JSON.parse(xmlhttp.responseText);
+            jQuery('#MovieSection').empty();
+            jQuery('#UserMovies').empty();
+
+            jQuery('#MovieSection').append(`
+                    <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                        <h2 class="w3-text-grey w3-padding-16" style="float: left"><i class="fa fa-user fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>
+                            MAE For 5 Movies: `+ obj.MAE_5 +`
+                        </h2>             
+                    </div>
+                    <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                        <h2 class="w3-text-grey w3-padding-16" style="float: left"><i class="fa fa-user fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>
+                            MAE For 10 Movies: `+ obj.MAE_10 +`
+                        </h2>             
+                    </div>
+                    <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                        <h2 class="w3-text-grey w3-padding-16" style="float: left"><i class="fa fa-user fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>
+                            MAE For 15 Movies: `+ obj.MAE_15 +`
+                        </h2>             
+                    </div>`);
+        }
+        xmlhttp.send(JSON.stringify(data));
+    }
+</script>
+
+<body class="w3-light-grey">
+
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+        <!-- The Grid -->
+        <div class="w3-row-padding">
+
+            <!-- Left Column -->
+            <div class="w3-third">
+
+                <div class="w3-white w3-text-grey w3-card-4">
+                    <div class="w3-container">
+
+                        <br>
+                        <p class="w3-xlarge"><b><i class="fa fa-fw w3-margin-right w3-text-teal"></i>Recommendation System</b></p>
+                        <hr>
+
+                        <p class="w3-large"><b><i class="fa fa-terminal fa-fw w3-margin-right w3-text-teal"></i>Functions</b></p>
+                        <p><a href="#" onclick="StartTest();return false;">Start Test</a></p>
+
+                        <hr>
+
+                        <p class="w3-large w3-text-theme"><b><i class="fa fa-user fa-fw w3-margin-right w3-text-teal"></i>Users</b></p>
+
+
+                        <div class="form-group has-feedback">
+                            <div class="input-group">
+                                <span class="input-group-addon" style="background-color:#FFFFFF;"><span class="glyphicon glyphicon-search"></span></span>
+                                <input id="search" type="text" class="form-control" id="inputGroupSuccess1" placeholder="Search..." style="border-left: 0px;">
+                            </div>
+                        </div>
+                        <br>
+
+                        <div id="Users">
+                        </div>
+                        <br>
+                    </div>
+                </div><br>
+
+                <!-- End Left Column -->
+            </div>
+
+            <!-- Right Column -->
+            <div class="w3-twothird">
+                <div id="MovieSection">
+                    <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
+                        <h2 class="w3-text-grey w3-padding-16" style="float: left"><i class="fa fa-user fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>
+                            Select A User
+                        </h2>
+                    </div>
+                </div>
+
+                <div id="UserMovies">
+                </div>
+
+                <!-- End Right Column -->
+            </div>
+
+            <!-- End Grid -->
+        </div>
+
+        <!-- End Page Container -->
+    </div>
+
+</body>
+
+</html>
