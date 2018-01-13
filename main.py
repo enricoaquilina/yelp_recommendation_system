@@ -25,23 +25,15 @@ if __name__ == "__main__":
     iterateNextPage = True
     current_posts_page = 0
 
-    # businesses = []
-    # for idx, line in enumerate(open('./dataset/business.json', 'r', encoding="utf8")):
-    #     # if idx < 20:
-    #         businesses.append(json.loads(line))
-    #     # else:
-    #     #     break
-    #
-    # insert_businesses(businesses)
+    businesses = []
+    for idx, line in enumerate(open('./dataset/business.json', 'r', encoding="utf8")):
+        # if idx < 20:
+            businesses.append(json.loads(line))
+        # else:
+        #     break
 
-    # users = []
-    # for idx, line in enumerate(open('./dataset/user.json', 'r', encoding="utf8")):
-    #     # if idx < 20:
-    #         users.append(json.loads(line))
-    #     # else:
-    #     #     break
-    #
-    # insert_users(users)
+    insert_businesses(businesses)
+
 
     reviews = []
     for idx, line in enumerate(open('./dataset/review.json', 'r', encoding="utf8")):

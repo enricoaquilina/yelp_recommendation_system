@@ -41,8 +41,7 @@ def graphConstraints():
     # graph.schema.create_uniqueness_constraint(COMMENTED, "fb_comment_id")
     # graph.schema.create_uniqueness_constraint(FB_USER, "id")
 
-    graph.schema.create_uniqueness_constraint(YELP_USER, "id")
-    graph.schema.create_uniqueness_constraint(YELP_BUSINESS, "id")
+    graph.schema.create_uniqueness_constraint(YELP_BUSINESS, "business_id")
     graph.schema.create_uniqueness_constraint(BUSINESS_DETAILS, "name")
     # graph.schema.create_uniqueness_constraint(REVIEW_COMMENT, "id")
     # graph.schema.create_uniqueness_constraint(REVIEW_AUTHOR, "id")
@@ -147,30 +146,69 @@ def business_exists(graph, business_node):
 # given a list of reviews, it iterates them and inserts the user who wrote that review
 def insert_reviews(review_list):
     graph = startConnection()
-    for review in review_list:
-        insert_user(graph, review)
+
+    review_count = 0
+    user_count = 0
+    # graph.schema.create_uniqueness_constraint(YELP_USER, "id")
+
+    # for each review in the list
+    for idx, review in enumerate(review_list):
+        # reviewed_business = list(graph.find(YELP_BUSINESS,
+        #                                     property_key="business_id",
+        #                                     property_value=review["business_id"]))
+
+        reviewed_business = graph.find_one(YELP_BUSINESS, "business_id", review["business_id"])
+
+        print("Review: %s/%s" % (str(idx), str(len(review_list))))
+
+        if idx % 10 == 0:
+            print("Current review count: %s" % str(review_count))
+            print("Current user count: %s" % str(user_count))
+
+        if reviewed_business["state"] == "QC" or reviewed_business["state"] == "OH":
+
+            # y_user = list(graph.find(YELP_USER,
+            #                          property_key="user_id",
+            #                          property_value=review["user_id"]))
+
+            y_user = graph.find_one(YELP_USER, "id", review["user_id"])
+
+            # if user doesn't exist
+            if y_user is None:
+                # create user
+                y_user = Node(YELP_USER,
+                              id=review["user_id"])
+                user_count += 1
+                graph.create(y_user)
+
+            # create relationship between user and business AND remove review
+            user_reviews_business = Relationship(y_user, REVIEWED, reviewed_business)
+            user_reviews_business["review_id"] = review["review_id"]
+            user_reviews_business["text"] = review["text"]
+            user_reviews_business["published_date"] = review["date"]
+            user_reviews_business["author_id"] = review["user_id"]
+            user_reviews_business["business_id"] = review["business_id"]
+            user_reviews_business["id"] = 0
+            # user_reviews_business["polarity"] = get_sentiment_polarity(review["polarity"])
+            # user_reviews_business["sentiment_score"] = \
+            #     get_sentiment_score(review["polarity"], user_reviews_business["polarity"])
+
+            graph.create(user_reviews_business)
+            review_count += 1
+            del review_list[idx]
+
+            # find other user reviews and repeat
+            # remaining_user_reviews = [x for x in review_list if x["user_id"] == y_user["id"]]
+            # for remaining_review in remaining_user_reviews:
+            #     # create relationship between user and business AND remove review
+            #     user_reviews_remaining_business = Relationship(y_user, REVIEWED, reviewed_business)
+            #     user_reviews_remaining_business["review_id"] = remaining_review["review_id"]
+            #     user_reviews_remaining_business["text"] = remaining_review["text"]
+            #     user_reviews_remaining_business["published_date"] = remaining_review["published_date"]
+        else:
+            del review_list[idx]
 
 
-# given a single review, check whether the user already exists, if no create it
-# get business linked to the review, and for the user create a relationship of type comment with the youtube video
-def insert_user(graph, review):
-    y_user = list(graph.find(YELP_USER,
-                             property_key="user_id",
-                             property_value=review["user_id"]))
-    if len(y_user) == 0:
-        y_user = Node(YELP_USER,
-                      id=review["user_id"])
-        graph.create(y_user)
-
-    y_business = list(graph.find(YELP_BUSINESS,
-                                 property_key="business_id",
-                                 property_value=review["business_id"]))
-
-    user = y_user[0]
-    if y_user[0] is None:
-        user = y_user
-
-    insert_review(graph, y_business[0], user, review)
 
 
 # given a business node, user node and review, check whether the relationship already exists, if no create it
