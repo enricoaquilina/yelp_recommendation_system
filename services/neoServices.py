@@ -153,10 +153,6 @@ def insert_reviews(review_list):
 
     # for each review in the list
     for idx, review in enumerate(review_list):
-        # reviewed_business = list(graph.find(YELP_BUSINESS,
-        #                                     property_key="business_id",
-        #                                     property_value=review["business_id"]))
-
         reviewed_business = graph.find_one(YELP_BUSINESS, "business_id", review["business_id"])
 
         print("Review: %s/%s" % (str(idx), str(len(review_list))))
@@ -166,10 +162,6 @@ def insert_reviews(review_list):
             print("Current user count: %s" % str(user_count))
 
         if reviewed_business["state"] == "QC" or reviewed_business["state"] == "OH":
-
-            # y_user = list(graph.find(YELP_USER,
-            #                          property_key="user_id",
-            #                          property_value=review["user_id"]))
 
             y_user = graph.find_one(YELP_USER, "id", review["user_id"])
 
@@ -189,9 +181,9 @@ def insert_reviews(review_list):
             user_reviews_business["author_id"] = review["user_id"]
             user_reviews_business["business_id"] = review["business_id"]
             user_reviews_business["id"] = 0
-            # user_reviews_business["polarity"] = get_sentiment_polarity(review["polarity"])
-            # user_reviews_business["sentiment_score"] = \
-            #     get_sentiment_score(review["polarity"], user_reviews_business["polarity"])
+            user_reviews_business["polarity"] = get_sentiment_polarity(review["text"])
+            user_reviews_business["sentiment_score"] = \
+                get_sentiment_score(review["text"], user_reviews_business["polarity"])
 
             graph.create(user_reviews_business)
             review_count += 1

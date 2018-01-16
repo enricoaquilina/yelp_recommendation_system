@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
       <change beforePath="$PROJECT_DIR$/services/neoServices.py" afterPath="$PROJECT_DIR$/services/neoServices.py" />
+      <change beforePath="$PROJECT_DIR$/services/sentimentService.py" afterPath="$PROJECT_DIR$/services/sentimentService.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,132 +20,105 @@
     <SUITE FILE_PATH="coverage/ReccomendationSystem$userController.coverage" NAME="userController Coverage Results" MODIFIED="1498400895738" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.9">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="219">
-                  <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
-                  <folding>
-                    <element signature="e#288#430#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="codecs.py" pinned="false" current-in-tab="false">
-            <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/codecs.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="307">
-                  <caret line="298" column="37" lean-forward="true" selection-start-line="298" selection-start-column="37" selection-end-line="298" selection-end-column="37" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="neoServices.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/services/neoServices.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="261">
-                  <caret line="161" column="66" lean-forward="true" selection-start-line="161" selection-start-column="66" selection-end-line="161" selection-end-column="66" />
-                  <folding>
-                    <element signature="e#58#102#0" expanded="true" />
-                    <element signature="e#797#921#0" expanded="false" />
-                    <element signature="e#1639#1967#0" expanded="false" />
-                    <element signature="e#2097#3147#0" expanded="false" />
-                    <element signature="e#3267#3977#0" expanded="false" />
-                    <element signature="e#4042#4838#0" expanded="false" />
-                    <element signature="e#4891#5155#0" expanded="false" />
-                    <element signature="e#5205#5361#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="mrRunner.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mapReduce/mrRunner.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
-                  <folding>
-                    <element signature="e#18#65#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="mrService.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mapReduce/mrService.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="20" column="46" lean-forward="false" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
-                  <folding>
-                    <element signature="e#3253#5114#0" expanded="false" />
-                    <element signature="e#5534#6152#0" expanded="false" />
-                    <element signature="e#6351#6765#0" expanded="false" />
-                    <element signature="e#6937#8080#0" expanded="false" />
-                    <element signature="e#8194#8687#0" expanded="false" />
-                    <element signature="e#8855#9250#0" expanded="false" />
-                    <element signature="e#9341#10328#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="review.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/review.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MRNeighbours.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/mapReduce/MRNeighbours.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="sentimentService.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/services/sentimentService.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="269">
-                  <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#79#1155#0" expanded="false" />
-                    <element signature="e#1157#1182#0" expanded="false" />
-                    <element signature="e#13957#15362#0" expanded="false" />
-                    <element signature="e#15524#15897#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="userController.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/userController.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+              <folding>
+                <element signature="e#288#430#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MRNeighbours.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapReduce/MRNeighbours.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sentimentService.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/sentimentService.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="304" column="0" lean-forward="false" selection-start-line="304" selection-start-column="0" selection-end-line="304" selection-end-column="0" />
+              <folding>
+                <element signature="e#79#1155#0" expanded="false" />
+                <element signature="e#1157#1182#0" expanded="false" />
+                <element signature="e#13957#15362#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="neoServices.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/neoServices.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="173" column="36" lean-forward="true" selection-start-line="173" selection-start-column="36" selection-end-line="173" selection-end-column="36" />
+              <folding>
+                <element signature="e#58#102#0" expanded="true" />
+                <element signature="e#797#921#0" expanded="false" />
+                <element signature="e#1639#1967#0" expanded="false" />
+                <element signature="e#2097#3147#0" expanded="false" />
+                <element signature="e#3267#3977#0" expanded="false" />
+                <element signature="e#4042#4838#0" expanded="false" />
+                <element signature="e#4891#5155#0" expanded="false" />
+                <element signature="e#5205#5361#0" expanded="false" />
+                <element signature="e#8335#9524#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mapperInput.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapReduce/mapperInput.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mrRunner.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mapReduce/mrRunner.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding>
+                <element signature="e#18#65#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mrService.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapReduce/mrService.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="355">
+              <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+              <folding>
+                <element signature="e#57#101#0" expanded="true" />
+                <element signature="e#3253#5114#0" expanded="false" />
+                <element signature="e#5534#6152#0" expanded="false" />
+                <element signature="e#6351#6765#0" expanded="false" />
+                <element signature="e#6937#8080#0" expanded="false" />
+                <element signature="e#8194#8687#0" expanded="false" />
+                <element signature="e#8855#9250#0" expanded="false" />
+                <element signature="e#9341#10328#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -225,13 +199,13 @@
         <option value="$PROJECT_DIR$/services/old_services/imdbApi.py" />
         <option value="$PROJECT_DIR$/services/old_services/youtubeVideoApi.py" />
         <option value="$PROJECT_DIR$/services/webApiServices.py" />
-        <option value="$PROJECT_DIR$/services/sentimentService.py" />
         <option value="$PROJECT_DIR$/services/helpers.py" />
         <option value="$PROJECT_DIR$/models/business.py" />
         <option value="$PROJECT_DIR$/models/review.py" />
         <option value="$PROJECT_DIR$/models/user.py" />
-        <option value="$PROJECT_DIR$/services/neoServices.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/services/neoServices.py" />
+        <option value="$PROJECT_DIR$/services/sentimentService.py" />
       </list>
     </option>
   </component>
@@ -241,7 +215,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="277" />
     <option name="width" value="1371" />
     <option name="height" value="739" />
@@ -277,11 +251,6 @@
               <item name="Recommendation system" type="b2602c69:ProjectViewProjectNode" />
               <item name="Recommendation system" type="462c0819:PsiDirectoryNode" />
               <item name="mapReduce" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Recommendation system" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Recommendation system" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Recommendation system" type="b2602c69:ProjectViewProjectNode" />
@@ -575,18 +544,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36797455" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36797455" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41251326" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41251326" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -634,23 +604,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/services/neoServices.py</url>
-          <line>216</line>
+          <line>208</line>
           <option name="timeStamp" value="252" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/services/neoServices.py</url>
-          <line>197</line>
+          <line>189</line>
           <option name="timeStamp" value="282" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/services/neoServices.py</url>
-          <line>178</line>
-          <option name="timeStamp" value="285" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/services/neoServices.py</url>
-          <line>176</line>
-          <option name="timeStamp" value="286" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
@@ -658,10 +618,24 @@
           <option name="timeStamp" value="289" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <condition expression="idx == 45" language="Python" />
+          <url>file://$PROJECT_DIR$/services/sentimentService.py</url>
+          <line>244</line>
+          <option name="timeStamp" value="293" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/services/neoServices.py</url>
-          <line>167</line>
-          <option name="timeStamp" value="291" />
+          <line>183</line>
+          <option name="timeStamp" value="294" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/services/neoServices.py</url>
+          <line>176</line>
+          <option name="timeStamp" value="298" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/services/sentimentService.py</url>
+          <line>276</line>
+          <option name="timeStamp" value="299" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -671,7 +645,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="293" />
+      <option name="time" value="300" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -681,6 +655,7 @@
         <watch expression="movie[&quot;PredictedRating&quot;]" language="Python" />
         <watch expression="movie[&quot;Rating&quot;]" language="Python" />
         <watch expression="len(newUser[&quot;Movies&quot;])" language="Python" />
+        <watch expression="movie[&quot;PredictedRating&quot;]" language="Python" />
       </configuration>
     </watches-manager>
   </component>
@@ -955,20 +930,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/user.json">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapReduce/mapperInput.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset/user.json" />
     <entry file="file://$PROJECT_DIR$/models/user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -997,11 +959,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/userController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/review.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="313" column="56" lean-forward="true" selection-start-line="313" selection-start-column="56" selection-end-line="313" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="e#288#430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/sentimentService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="304" column="0" lean-forward="false" selection-start-line="304" selection-start-column="0" selection-end-line="304" selection-end-column="0" />
+          <folding>
+            <element signature="e#79#1155#0" expanded="false" />
+            <element signature="e#1157#1182#0" expanded="false" />
+            <element signature="e#13957#15362#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/neoServices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="173" column="36" lean-forward="true" selection-start-line="173" selection-start-column="36" selection-end-line="173" selection-end-column="36" />
+          <folding>
+            <element signature="e#58#102#0" expanded="true" />
+            <element signature="e#797#921#0" expanded="false" />
+            <element signature="e#1639#1967#0" expanded="false" />
+            <element signature="e#2097#3147#0" expanded="false" />
+            <element signature="e#3267#3977#0" expanded="false" />
+            <element signature="e#4042#4838#0" expanded="false" />
+            <element signature="e#4891#5155#0" expanded="false" />
+            <element signature="e#5205#5361#0" expanded="false" />
+            <element signature="e#8335#9524#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1013,42 +1031,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/userController.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapReduce/mrRunner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="33" column="47" lean-forward="false" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
-          <folding>
-            <element signature="e#18#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/sentimentService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
-          <folding>
-            <element signature="e#79#1155#0" expanded="false" />
-            <element signature="e#1157#1182#0" expanded="false" />
-            <element signature="e#13957#15362#0" expanded="false" />
-            <element signature="e#15524#15897#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mapReduce/mrService.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="20" column="46" lean-forward="false" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+        <state relative-caret-position="355">
+          <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
           <folding>
+            <element signature="e#57#101#0" expanded="true" />
             <element signature="e#3253#5114#0" expanded="false" />
             <element signature="e#5534#6152#0" expanded="false" />
             <element signature="e#6351#6765#0" expanded="false" />
@@ -1060,37 +1048,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/codecs.py">
+    <entry file="file://$PROJECT_DIR$/mapReduce/mapperInput.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="298" column="37" lean-forward="true" selection-start-line="298" selection-start-column="37" selection-end-line="298" selection-end-column="37" />
+        <state relative-caret-position="136">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/mapReduce/mrRunner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="37" column="16" lean-forward="true" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+        <state relative-caret-position="85">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
-            <element signature="e#288#430#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/neoServices.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="161" column="66" lean-forward="true" selection-start-line="161" selection-start-column="66" selection-end-line="161" selection-end-column="66" />
-          <folding>
-            <element signature="e#58#102#0" expanded="true" />
-            <element signature="e#797#921#0" expanded="false" />
-            <element signature="e#1639#1967#0" expanded="false" />
-            <element signature="e#2097#3147#0" expanded="false" />
-            <element signature="e#3267#3977#0" expanded="false" />
-            <element signature="e#4042#4838#0" expanded="false" />
-            <element signature="e#4891#5155#0" expanded="false" />
-            <element signature="e#5205#5361#0" expanded="false" />
+            <element signature="e#18#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
